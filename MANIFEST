@@ -20,3 +20,4 @@ t/testmods/C/G.pm
 t/testmods/C/G/H.pm
 t/testmods/I.pm
 t/testmods/J.pm
+META.yml                                 Module meta-data (added by MakeMaker)

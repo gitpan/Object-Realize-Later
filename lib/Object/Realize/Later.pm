@@ -1,7 +1,7 @@
 
 package Object::Realize::Later;
 use vars '$VERSION';
-$VERSION = '0.14';
+$VERSION = '0.15';
 
 use Carp;
 use Scalar::Util 'weaken';
@@ -79,7 +79,7 @@ sub AUTOLOAD_code($)
      return if $call eq 'DESTROY';
 CODE1
 
-     unless(\$$helper\->can(\$call))
+     unless(\$$helper->can(\$call) || \$$helper->can('AUTOLOAD'))
      {   use Carp;
          croak "Unknown method \$call called";
      }
