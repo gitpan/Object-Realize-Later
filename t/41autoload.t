@@ -1,14 +1,14 @@
 #!/usr/bin/perl -w
 
 #
-# Test the autoloading() where becomes => STRING
+# Test the autoloading() where becomes => CODE
 #
 
 use strict;
 use Test;
 
 use lib 't', '.', 't/testmods', 'testmods';
-use C::D::E;
+use C::G::H;
 
 BEGIN { plan tests => 17 }
 
@@ -16,52 +16,52 @@ my $warntxt;
 sub catchwarn {$warntxt = "@_"};
 
 
-# Autoload via C::D because of request from A::B
+# Autoload via C::G because of request from A::B
 
-my $obj = C::D->new;
-ok($obj->c_d eq 'c_d');
+my $obj = C::G->new;
+ok($obj->c_g eq 'c_g');
 ok($obj->c   eq 'c'  );
 
 {   local $SIG{__WARN__} = \&catchwarn;
     ok($obj->a_b eq 'a_b');  # triggers autoload
 }
-ok($warntxt eq "Realization of C::D\n");
+ok($warntxt eq "Realization of C::G\n");
 ok(ref $obj  eq 'A::B');
 
 
-# Autoload via C::D::E because of request from A::B
+# Autoload via C::G::H because of request from A::B
 
-$obj = C::D::E->new;
-ok($obj->c_d_e eq 'c_d_e');
-ok($obj->c_d   eq 'c_d');
+$obj = C::G::H->new;
+ok($obj->c_g_h eq 'c_g_h');
+ok($obj->c_g   eq 'c_g');
 ok($obj->c     eq 'c'  );
 
 {   local $SIG{__WARN__} = \&catchwarn;
     ok($obj->a_b eq 'a_b');  # triggers autoload
 }
-ok($warntxt eq "Realization of C::D::E\n");
+ok($warntxt eq "Realization of C::G::H\n");
 ok(ref $obj  eq 'A::B');
 
 
 
-# Autoload via C::D because of request from A
+# Autoload via C::G because of request from A
 
-$obj = C::D->new;
+$obj = C::G->new;
 
 {   local $SIG{__WARN__} = \&catchwarn;
     ok($obj->a eq 'a');  # triggers autoload
 }
-ok($warntxt eq "Realization of C::D\n");
+ok($warntxt eq "Realization of C::G\n");
 ok(ref $obj  eq 'A::B');
 
 
-# Autoload via C::D::E because of request from A
+# Autoload via C::G::H because of request from A
 
-$obj = C::D::E->new;
+$obj = C::G::H->new;
 
 {   local $SIG{__WARN__} = \&catchwarn;
     ok($obj->a eq 'a');  # triggers autoload
 }
-ok($warntxt eq "Realization of C::D::E\n");
+ok($warntxt eq "Realization of C::G::H\n");
 ok(ref $obj  eq 'A::B');
 
