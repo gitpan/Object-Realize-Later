@@ -1,7 +1,7 @@
 
 package Object::Realize::Later;
 use vars '$VERSION';
-$VERSION = '0.13';
+$VERSION = '0.14';
 
 use Carp;
 use Scalar::Util 'weaken';
@@ -89,7 +89,7 @@ NOT_BELIEVE
 
      \$_[0]->forceRealize;
      my \$made = shift;
-     \$made->\$call(@_);
+     \$made->\$call(\@_);
   }
 CODE2
 }

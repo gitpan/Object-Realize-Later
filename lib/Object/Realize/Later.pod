@@ -470,7 +470,7 @@ MailBox, L<http://perl.overmeer.net/mailbox/html/>.
 
 =head1 COPYRIGHTS
 
-Module version 0.13.
+Module version 0.14.
 Written by Mark Overmeer (mark@overmeer.net).  See the ChangeLog for
 other contributors.
 
