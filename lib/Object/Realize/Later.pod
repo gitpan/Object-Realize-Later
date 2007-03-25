@@ -1,9 +1,6 @@
-
 =head1 NAME
 
 Object::Realize::Later - Delayed creation of objects
-
-
 
 =head1 SYNOPSIS
 
@@ -12,7 +9,6 @@ Object::Realize::Later - Delayed creation of objects
  use Object::Realize::Later
     becomes => 'MyRealObject',
     realize => 'load';
-
 
 =head1 DESCRIPTION
 
@@ -27,13 +23,9 @@ never (or not yet) used?  In interactive programs, postponed realization
 may boost start-up: the realization of objects is triggered by the
 use, so spread over time.
 
-
-
 =head1 METHODS
 
-
 =head2 Construction
-
 
 B<use>(Object::Realize::Later OPTIONS)
 
@@ -42,13 +34,13 @@ B<use>(Object::Realize::Later OPTIONS)
 When you invoke (C<use>) the C<Object::Realize::Later> package, it will
 add a set of methods to your package (see section L</Added to YOUR class>).
 
- Option              Defined in       Default   
- becomes                              <required>
- believe_caller                       <false>   
- realize                              <required>
- source_module                        <becomes> 
- warn_realization                     <false>   
- warn_realize_again                   <false>   
+ Option            --Default
+ becomes             <required>
+ believe_caller      <false>
+ realize             <required>
+ source_module       <becomes>
+ warn_realization    <false>
+ warn_realize_again  <false>
 
 . becomes CLASS
 
@@ -120,7 +112,6 @@ it slows-down each method call.
 =back
 
 =head2 Added to YOUR class
-
 
 $obj-E<gt>B<AUTOLOAD>
 
@@ -224,11 +215,7 @@ place.  It checks whether the realization has been done already
 
 =back
 
-
-
-
 =head1 DETAILS
-
 
 =head2 About lazy loading
 
@@ -320,7 +307,6 @@ Consider this:
  print $copy->getLabel;         # prints 'original'
 
 =head2 Examples
-
 
 =head3 Example 1
 
@@ -465,23 +451,16 @@ be prepared to read the body when needed.  A code snippet:
  print $message->can('lines'); # true, but no realization yet.
  print $message->lines;        # realizes automatically.
 
+=head1 SEE ALSO
 
+This module is part of Object-Realize-Later distribution version 0.16,
+built on March 25, 2007. Website: F<http://perl.overmeer.net/orl/>
 
+=head1 LICENSE
 
+Copyrights 2001-2004-2007 by Mark Overmeer <perl@overmeer.net>.For other contributors see Changes.
 
-=head1 REFERENCES
-
-The html version of this module can be found in the website about
-MailBox, L<http://perl.overmeer.net/mailbox/html/>.
-
-=head1 COPYRIGHTS
-
-Module version 0.15.
-Written by Mark Overmeer (mark@overmeer.net).  See the ChangeLog for
-other contributors.
-
-Copyright (c) 2003 by the author(s). All rights reserved.  This program
-is free software; you can redistribute it and/or modify it under the
-same terms as Perl itself.
-
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+See F<http://www.perl.com/perl/misc/Artistic.html>
 
