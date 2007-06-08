@@ -8,7 +8,7 @@ use strict;
 
 package C::G::H;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 use base 'C::G';
 
 sub c_g_h() {'c_g_h'}

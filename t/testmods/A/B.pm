@@ -8,7 +8,7 @@ use warnings;
 
 package A::B;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 use base 'A';
 
 sub a_b() {'a_b'}

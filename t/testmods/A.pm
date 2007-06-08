@@ -7,7 +7,7 @@ use strict;
 use warnings;
 package A;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 sub a() {'a'}
 

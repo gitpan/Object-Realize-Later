@@ -4,7 +4,7 @@
 # Pod stripped from pm file by OODoc 1.00.
 package C::G;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 use base 'C';
 
 use Object::Realize::Later

@@ -8,7 +8,7 @@ use strict;
 
 package C::D::E;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 use base 'C::D';
 
 sub c_d_e() {'c_d_e'}

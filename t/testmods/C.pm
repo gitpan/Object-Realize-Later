@@ -8,7 +8,7 @@ use warnings;
 
 package C;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 use overload '""' => sub { ref(shift) };
 
 sub new() { bless {}, shift }

@@ -5,7 +5,7 @@
 
 package Object::Realize::Later;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 use Carp;
 use Scalar::Util 'weaken';

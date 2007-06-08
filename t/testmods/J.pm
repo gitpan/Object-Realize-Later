@@ -4,11 +4,11 @@
 # Pod stripped from pm file by OODoc 1.00.
 package J;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 package Another::Class;
 use vars '$VERSION';
-$VERSION = '0.17';
+$VERSION = '0.18';
 
 sub a_method { 42 }
 
