@@ -1,11 +1,11 @@
-# Copyrights 2001-2004-2007 by Mark Overmeer <perl@overmeer.net>.
-# For other contributors see Changes.
+# Copyrights 2001-2004,2007 by Mark Overmeer <perl@overmeer.net>.
+#  For other contributors see Changes.
 # See the manual pages for details on the licensing terms.
-# Pod stripped from pm file by OODoc 0.99.
+# Pod stripped from pm file by OODoc 1.00.
 
 package Object::Realize::Later;
 use vars '$VERSION';
-$VERSION = '0.16';
+$VERSION = '0.17';
 
 use Carp;
 use Scalar::Util 'weaken';
@@ -17,8 +17,6 @@ no strict 'refs';
 
 my $named  = 'ORL_realization_method';
 my $helper = 'ORL_fake_realized';
-
-#-------------------------------------------
 
 
 sub init_code($)
@@ -44,8 +42,6 @@ sub isa_code($)
 ISA_CODE
 }
 
-#-------------------------------------------
-
 
 sub can_code($)
 {   my $args = shift;
@@ -69,8 +65,6 @@ sub can_code($)
   }
 CAN_CODE
 }
-
-#-------------------------------------------
 
 
 sub AUTOLOAD_code($)
@@ -98,8 +92,6 @@ NOT_BELIEVE
 CODE2
 }
 
-#-------------------------------------------
-
 
 sub realize_code($)
 {   my $args   = shift;
@@ -122,8 +114,6 @@ WARN
 REALIZE_CODE
 }
 
-#-------------------------------------------
-
 
 sub will_realize_code($)
 {   my $args = shift;
@@ -132,8 +122,6 @@ sub will_realize_code($)
 sub willRealize() {'$becomes'}
 WILL_CODE
 }
-
-#-------------------------------------------
 
 
 sub realize(@)
@@ -161,8 +149,6 @@ sub realize(@)
     $class->realizationOf($object, $loaded);
 } 
 
-#-------------------------------------------
-
 
 my %realization;
 
@@ -177,8 +163,6 @@ sub realizationOf($;$)
 
     $realization{$unique};
 }
-
-#-------------------------------------------
 
 
 sub import(@)
@@ -211,7 +195,7 @@ sub import(@)
        . realize_code($args)
        . will_realize_code($args)
        ;
-#   warn $eval;   # uncomment for debugging
+#warn $eval;
 
     # Install the code
 
@@ -220,8 +204,6 @@ sub import(@)
 
     1;
 }
-
-#-------------------------------------------
 
 
 1;
