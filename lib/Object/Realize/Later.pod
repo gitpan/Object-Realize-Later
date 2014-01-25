@@ -1,3 +1,5 @@
+=encoding utf8
+
 =head1 NAME
 
 Object::Realize::Later - Delayed creation of objects
@@ -27,32 +29,28 @@ use, so spread over time.
 
 =head2 Construction
 
-B<use>(Object::Realize::Later OPTIONS)
-
 =over 4
+
+=item B<use>(Object::Realize::Later %options)
 
 When you invoke (C<use>) the C<Object::Realize::Later> package, it will
 add a set of methods to your package (see section L</Added to YOUR class>).
 
- Option            --Default
- becomes             <required>
- believe_caller      <false>
- realize             <required>
- source_module       <becomes>
- warn_realization    <false>
- warn_realize_again  <false>
+ -Option            --Default
+  becomes             <required>
+  believe_caller      <false>
+  realize             <required>
+  source_module       <becomes>
+  warn_realization    <false>
+  warn_realize_again  <false>
 
-. becomes => CLASS
+=over 2
 
-=over 4
+=item becomes => CLASS
 
 Which type will this object become after realization.
 
-=back
-
-. believe_caller => BOOLEAN
-
-=over 4
+=item believe_caller => BOOLEAN
 
 When a method is called on the un-realized object, the AUTOLOAD
 checks whether this resolves the need.  If not, the realization is
@@ -61,11 +59,7 @@ extends the functionality of the class specified with C<becomes>,
 this check must be disabled.  In that case, specify true for
 this option.
 
-=back
-
-. realize => METHOD|CODE
-
-=over 4
+=item realize => METHOD|CODE
 
 How will transform.  If you specify a CODE reference, then this will be
 called with the lazy-object as first argument, and the requested method
@@ -75,30 +69,18 @@ After realization, you may still have your hands on the lazy object
 on various places.  Be sure that your realization method is coping
 with that, for instance by using L<Memoize>.  See examples below.
 
-=back
-
-. source_module => CLASS
-
-=over 4
+=item source_module => CLASS
 
 if the class (a package) is included in a file (module) with a different
 name, then use this argument to specify the file name. The name is
 expected to be the same as in the C<require> call which would load it.
 
-=back
-
-. warn_realization => BOOLEAN
-
-=over 4
+=item warn_realization => BOOLEAN
 
 Print a warning message when the realization starts.  This is for
 debugging purposes.
 
-=back
-
-. warn_realize_again => BOOLEAN
-
-=over 4
+=item warn_realize_again => BOOLEAN
 
 When an object is realized, the original object -which functioned
 as a stub- is reconstructed to work as proxy to the realized object.
@@ -113,25 +95,21 @@ it slows-down each method call.
 
 =head2 Added to YOUR class
 
-$obj-E<gt>B<AUTOLOAD>
-
 =over 4
+
+=item $obj-E<gt>B<AUTOLOAD>()
 
 When a method is called which is not available for the lazy object, the
 AUTOLOAD is called.
 
-=back
+=item $obj-E<gt>B<can>($method)
 
-$obj-E<gt>B<can>(METHOD)
+=item Object::Realize::Later-E<gt>B<can>($method)
 
-Object::Realize::Later-E<gt>B<can>(METHOD)
-
-=over 4
-
-Is the specified METHOD available for the lazy or the realized version
+Is the specified $method available for the lazy or the realized version
 of this object?  It will return the reference to the code.
 
-I<Example:> 
+example: 
 
    MyLazyObject->can('lazyWork')      # true
    MyLazyObject->can('realWork')      # true
@@ -140,25 +118,17 @@ I<Example:>
    $lazy->can('lazyWork');            # true
    $lazy->can('realWork');            # true
 
-=back
-
-$obj-E<gt>B<forceRealize>
-
-=over 4
+=item $obj-E<gt>B<forceRealize>()
 
 You can force the load by calling this method on your object.  It returns
 the realized object.
 
-=back
+=item Object::Realize::Later-E<gt>B<isa>($class)
 
-Object::Realize::Later-E<gt>B<isa>(CLASS)
+Is this object a (sub-)class of the specified $class or can it become a
+(sub-)class of $class.
 
-=over 4
-
-Is this object a (sub-)class of the specified CLASS or can it become a
-(sub-)class of CLASS.
-
-I<Example:> 
+example: 
 
  MyLazyObject->isa('MyRealObject')      # true
  MyLazyObject->isa('SuperClassOfLazy'); # true
@@ -169,11 +139,7 @@ I<Example:>
  $lazy->isa('SuperClassOfLazy');        # true
  $lazy->isa('SuperClassOfReal');        # true
 
-=back
-
-$obj-E<gt>B<willRealize>
-
-=over 4
+=item $obj-E<gt>B<willRealize>()
 
 Returns which class will be the realized to follow-up this class.
 
@@ -184,30 +150,22 @@ Returns which class will be the realized to follow-up this class.
 The next methods are not exported to the class where the `use' took
 place.  These methods implement the actual realization.
 
-Object::Realize::Later-E<gt>B<import>(OPTIONS)
-
 =over 4
 
-The OPTIONS used for C<import> are the values after the class name
+=item Object::Realize::Later-E<gt>B<import>(%options)
+
+The %options used for C<import> are the values after the class name
 with C<use>.  So this routine implements the actual option parsing.
 It generates code dynamically, which is then evaluated in the
 callers name-space.
 
-=back
+=item Object::Realize::Later-E<gt>B<realizationOf>( $object, [$realized] )
 
-Object::Realize::Later-E<gt>B<realizationOf>(OBJECT [,REALIZED])
-
-=over 4
-
-Returns the REALIZED version of OBJECT, optionally after setting it
+Returns the $realized version of $object, optionally after setting it
 first.  When the method returns C<undef>, the realization has not
 yet taken place or the realized object has already been removed again.
 
-=back
-
-Object::Realize::Later-E<gt>B<realize>(OPTIONS)
-
-=over 4
+=item Object::Realize::Later-E<gt>B<realize>(%options)
 
 This method is called when a C<$object->forceRealize()> takes
 place.  It checks whether the realization has been done already
@@ -455,12 +413,12 @@ be prepared to read the body when needed.  A code snippet:
 
 =head1 SEE ALSO
 
-This module is part of Object-Realize-Later distribution version 0.18,
-built on June 08, 2007. Website: F<http://perl.overmeer.net/orl/>
+This module is part of Object-Realize-Later distribution version 0.19,
+built on January 24, 2014. Website: F<http://perl.overmeer.net/orl/>
 
 =head1 LICENSE
 
-Copyrights 2001-2004,2007 by Mark Overmeer <perl@overmeer.net>. For other contributors see Changes.
+Copyrights 2001-2014 by [Mark Overmeer <perl@overmeer.net>]. For other contributors see Changes.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
